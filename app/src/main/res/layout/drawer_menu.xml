@@ -1,0 +1,214 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dark_blue"
+    android:orientation="vertical"
+    android:paddingStart="32dp"
+    android:paddingEnd="0dp">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/profilePicture"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/picture"
+                    app:layout_constraintDimensionRatio="1:1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/firstName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:text="Nishant Sharma"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toEndOf="@id/profilePicture"
+                        app:layout_constraintTop_toTopOf="@id/profilePicture" />
+
+                    <TextView
+                        android:id="@+id/editProfile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="10dp"
+                        android:drawablePadding="10dp"
+                        android:text="@string/edit_profile"
+                        android:textColor="@color/textColor"
+                        android:textSize="20sp"
+                        app:drawableStartCompat="@drawable/edit_icon" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/pinned"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:drawablePadding="15dp"
+                android:gravity="center_vertical"
+                android:text="@string/pinned"
+                android:textColor="@color/textColor"
+                android:textSize="15sp"
+                app:drawableStartCompat="@drawable/pin_icon" />
+
+            <TextView
+                android:id="@+id/categories"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:drawablePadding="15dp"
+                android:gravity="center_vertical"
+                android:text="@string/categories"
+                android:textColor="@color/textColor"
+                android:textSize="15sp"
+                app:drawableStartCompat="@drawable/category_icon" />
+
+            <View
+                android:id="@+id/line1"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:background="@color/light_text" />
+
+            <TextView
+                android:id="@+id/archieve"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawablePadding="15dp"
+                android:gravity="center_vertical"
+                android:text="@string/archieve"
+                android:textColor="@color/textColor"
+                android:textSize="15sp"
+                app:drawableStartCompat="@drawable/archieve_icon" />
+
+            <TextView
+                android:id="@+id/trash"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:drawablePadding="15dp"
+                android:gravity="center_vertical"
+                android:text="@string/trash"
+                android:textColor="@color/textColor"
+                android:textSize="15sp"
+                app:drawableStartCompat="@drawable/trash_icon" />
+
+            <View
+                android:id="@+id/line2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:background="@color/light_text" />
+
+            <TextView
+                android:id="@+id/analytics"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawablePadding="10dp"
+                android:gravity="center_vertical"
+                android:text="@string/analytics"
+                android:textColor="@color/textColor"
+                android:textSize="15sp"
+                app:drawableStartCompat="@drawable/analytics_icon" />
+
+            <TextView
+                android:id="@+id/settings"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:drawablePadding="10dp"
+                android:gravity="center_vertical"
+                android:text="@string/settings"
+                android:textColor="@color/textColor"
+                android:textSize="15sp"
+                app:drawableStartCompat="@drawable/settings_icon" />
+
+            <ImageView
+                android:id="@+id/consistencyGraph"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:contentDescription="@string/image"
+                android:src="@drawable/curve" />
+
+            <TextView
+                android:id="@+id/good"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Good"
+                android:textColor="@color/textColor" />
+
+            <TextView
+                android:id="@+id/consistency"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="25dp"
+                android:text="@string/consistency"
+                android:textColor="@color/textColor"
+                android:textSize="30sp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/help"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="10dp"
+                    android:text="@string/help"
+                    android:textColor="@color/light_text"
+                    android:textSize="20sp"
+                    app:drawableStartCompat="@drawable/help_icon" />
+
+                <View
+                    android:id="@+id/verticalLine"
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="40dp"
+                    android:background="@color/line" />
+
+                <TextView
+                    android:id="@+id/signOut"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="40dp"
+                    android:text="@string/sign_out"
+                    android:textColor="@color/light_text"
+                    android:textSize="20sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>
