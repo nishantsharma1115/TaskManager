@@ -13,4 +13,5 @@
     <color name="light_text">#CDC9C9</color>
     <color name="line">#62656A</color>
     <color name="textColor">#DDDDDD</color>
+    <color name="button">#00FFE0</color>
 </resources>

@@ -100,6 +100,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
+        android:backgroundTint="@color/button"
         android:contentDescription="@string/image"
         android:src="@drawable/add_icon"
         app:layout_constraintBottom_toBottomOf="parent"

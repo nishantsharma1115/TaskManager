@@ -1,9 +1,11 @@
 package com.nishant.mytasks
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import nl.psdcompany.duonavigationdrawer.views.DuoDrawerLayout
 import nl.psdcompany.duonavigationdrawer.widgets.DuoDrawerToggle
 
@@ -17,6 +19,9 @@ class MainActivity : AppCompatActivity() {
     }
     private val curve: ImageView by lazy {
         findViewById(R.id.consistencyGraph)
+    }
+    private val addTask: FloatingActionButton by lazy {
+        findViewById(R.id.btnAddTask)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,5 +38,9 @@ class MainActivity : AppCompatActivity() {
         toggle.setHomeAsUpIndicator(R.drawable.drawer_icon)
         drawer.setDrawerListener(toggle)
         toggle.syncState()
+
+        addTask.setOnClickListener {
+            startActivity(Intent(this, AddTaskActivity::class.java))
+        }
     }
 }
