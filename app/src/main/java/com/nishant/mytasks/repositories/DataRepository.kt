@@ -1,12 +1,14 @@
 package com.nishant.mytasks.repositories
 
+import android.util.Log
 import com.nishant.mytasks.model.Task
 import com.nishant.mytasks.room.CacheMapper
 import com.nishant.mytasks.room.TaskDao
+import javax.inject.Inject
 
 
 class DataRepository
-constructor(
+@Inject constructor(
     private val taskDao: TaskDao,
     private val cacheMapper: CacheMapper
 ) {
@@ -17,6 +19,7 @@ constructor(
         failure: (Long) -> Unit
     ) {
         val result: Long = taskDao.insert(cacheMapper.mapToEntity(task))
+        Log.d("Here row", result.toString())
         if (result >= 0) {
             success(result)
         } else {

@@ -1,41 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<nl.psdcompany.duonavigationdrawer.views.DuoDrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/drawer"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <nl.psdcompany.duonavigationdrawer.views.DuoMenuView
-        android:id="@+id/header_footer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:background="@drawable/bg"
-        app:footer="@layout/drawer_footer"
-        app:header="@layout/drawer_header" />
-
-    <LinearLayout
-        android:id="@+id/menu"
+    <nl.psdcompany.duonavigationdrawer.views.DuoDrawerLayout
+        android:id="@+id/drawer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center_vertical"
-        android:orientation="vertical"
-        android:tag="menu">
+        tools:context=".MainActivity">
 
-        <include layout="@layout/drawer_menu" />
+        <nl.psdcompany.duonavigationdrawer.views.DuoMenuView
+            android:id="@+id/header_footer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:background="@drawable/bg"
+            app:footer="@layout/drawer_footer"
+            app:header="@layout/drawer_header" />
 
-    </LinearLayout>
+        <LinearLayout
+            android:id="@+id/menu"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:tag="menu">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:tag="content">
+            <include layout="@layout/drawer_menu" />
 
-        <include layout="@layout/layout_home_page" />
+        </LinearLayout>
 
-    </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:tag="content">
 
-</nl.psdcompany.duonavigationdrawer.views.DuoDrawerLayout>
+            <include
+                android:id="@+id/homePage"
+                layout="@layout/layout_home_page" />
+
+        </LinearLayout>
+
+    </nl.psdcompany.duonavigationdrawer.views.DuoDrawerLayout>
+</layout>

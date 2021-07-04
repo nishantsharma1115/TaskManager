@@ -11,4 +11,6 @@
     <string name="consistency">Consistency</string>
     <string name="help">Help</string>
     <string name="sign_out">Sign out</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
 </resources>

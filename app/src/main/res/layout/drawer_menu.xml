@@ -13,7 +13,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <LinearLayout
@@ -44,7 +44,7 @@
                         android:layout_marginStart="20dp"
                         android:text="Nishant Sharma"
                         android:textColor="@color/white"
-                        android:textSize="20sp"
+                        android:textSize="22sp"
                         android:textStyle="bold"
                         app:layout_constraintStart_toEndOf="@id/profilePicture"
                         app:layout_constraintTop_toTopOf="@id/profilePicture" />
@@ -55,11 +55,11 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
                         android:layout_marginTop="10dp"
+                        android:drawableEnd="@drawable/edit_icon"
                         android:drawablePadding="10dp"
                         android:text="@string/edit_profile"
                         android:textColor="@color/textColor"
-                        android:textSize="20sp"
-                        app:drawableStartCompat="@drawable/edit_icon" />
+                        android:textSize="16sp" />
 
                 </LinearLayout>
 
@@ -106,7 +106,7 @@
                 android:text="@string/archieve"
                 android:textColor="@color/textColor"
                 android:textSize="15sp"
-                app:drawableStartCompat="@drawable/archieve_icon" />
+                app:drawableStartCompat="@drawable/archieve_icon_blue" />
 
             <TextView
                 android:id="@+id/trash"
