@@ -1,4 +1,4 @@
-![](media/header.jpg)
+![](media/header.png)
 
 # **Task Manager** 
 
