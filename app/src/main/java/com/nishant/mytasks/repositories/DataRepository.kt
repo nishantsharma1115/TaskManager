@@ -2,6 +2,7 @@ package com.nishant.mytasks.repositories
 
 import android.util.Log
 import com.nishant.mytasks.model.Task
+import com.nishant.mytasks.model.TaskCount
 import com.nishant.mytasks.room.CacheMapper
 import com.nishant.mytasks.room.TaskDao
 import javax.inject.Inject
@@ -24,6 +25,19 @@ class DataRepository
             success(result)
         } else {
             failure(-1)
+        }
+    }
+
+    suspend fun getAllCategoriesWithCount(
+        success: (List<TaskCount>) -> Unit,
+        failure: (String) -> Unit
+    ) {
+        val categoryList = taskDao.getAllCategoriesWithCount()
+
+        if (categoryList.isEmpty()) {
+            failure("No categories")
+        } else {
+            success(categoryList)
         }
     }
 }

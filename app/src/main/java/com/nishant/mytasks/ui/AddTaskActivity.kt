@@ -3,6 +3,7 @@ package com.nishant.mytasks.ui
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.RadioButton
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -12,6 +13,7 @@ import coil.load
 import com.nishant.mytasks.R
 import com.nishant.mytasks.databinding.ActivityAddTaskBinding
 import com.nishant.mytasks.model.Task
+import com.nishant.mytasks.util.Resource
 import dagger.hilt.android.AndroidEntryPoint
 import java.time.LocalTime
 import kotlin.time.ExperimentalTime
@@ -43,8 +45,21 @@ class AddTaskActivity : AppCompatActivity() {
             }
         }
 
-        dataViewModel.insertTaskStatus.observe(this, {
-            Log.d("Task Data", it.data.toString())
+        dataViewModel.insertTaskStatus.observe(this, { response ->
+            Log.d("Task Data", response.toString())
+            when (response) {
+                is Resource.Loading -> {
+                    showProgressBar()
+                }
+                is Resource.Success -> {
+                    hideProgressBar()
+                    onBackPressed()
+                }
+                is Resource.Error -> {
+                    hideProgressBar()
+                    Toast.makeText(this, response.message, Toast.LENGTH_SHORT).show()
+                }
+            }
         })
 
         binding.addTaskToArchieve.setOnClickListener {
@@ -71,6 +86,16 @@ class AddTaskActivity : AppCompatActivity() {
                 binding.addTaskToPinned.load(R.drawable.pin_icon)
             }
         }
+    }
+
+    private fun showProgressBar() {
+        binding.progressBar.visibility = View.VISIBLE
+        binding.saveTask.visibility = View.GONE
+    }
+
+    private fun hideProgressBar() {
+        binding.progressBar.visibility = View.GONE
+        binding.saveTask.visibility = View.VISIBLE
     }
 
     private fun getTask(): Task {
