@@ -3,6 +3,7 @@ package com.nishant.mytasks
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -49,6 +50,8 @@ class MainActivity : AppCompatActivity() {
                     Log.d("List result", "Loading")
                 }
                 is Resource.Success -> {
+                    binding.homePage.rvCategories.visibility = View.VISIBLE
+                    binding.homePage.noTaskTextForCategory.visibility = View.GONE
                     Log.d("List result", response.data.toString())
                     if (response.data != null) {
                         val list = response.data
@@ -64,7 +67,8 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
                 is Resource.Error -> {
-                    Log.d("List result", "Empty")
+                    binding.homePage.rvCategories.visibility = View.GONE
+                    binding.homePage.noTaskTextForCategory.visibility = View.VISIBLE
                 }
             }
         })
