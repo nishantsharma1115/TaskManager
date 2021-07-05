@@ -6,9 +6,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.nishant.mytasks.model.Task
-import com.nishant.mytasks.model.TaskCount
 import com.nishant.mytasks.repositories.DataRepository
 import com.nishant.mytasks.util.Resource
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
 class DataViewModel
@@ -28,14 +29,17 @@ constructor(
         })
     }
 
-    private val _getAllCategoriesStatus = MutableLiveData<Resource<List<TaskCount>>>()
-    val getAllCategoriesStatus: LiveData<Resource<List<TaskCount>>> = _getAllCategoriesStatus
-    fun getAllCategoriesWithCount() = viewModelScope.launch {
-        _getAllCategoriesStatus.postValue(Resource.Loading())
-        dataRepository.getAllCategoriesWithCount({ categoryList ->
-            _getAllCategoriesStatus.postValue(Resource.Success(categoryList))
-        }, { error ->
-            _getAllCategoriesStatus.postValue(Resource.Error(error))
-        })
-    }
+//    private val _getAllCategoriesStatus = MutableLiveData<Resource<List<TaskCount>>>()
+//    val getAllCategoriesStatus: LiveData<Resource<List<TaskCount>>> = _getAllCategoriesStatus
+//    fun getAllCategoriesWithCount() = viewModelScope.launch {
+//        _getAllCategoriesStatus.postValue(Resource.Loading())
+//        dataRepository.getAllCategoriesWithCount({ categoryList ->
+//            _getAllCategoriesStatus.postValue(Resource.Success(categoryList))
+//        }, { error ->
+//            _getAllCategoriesStatus.postValue(Resource.Error(error))
+//        })
+//    }
+
+    val categoryListWithCount = dataRepository.getAllCategoriesWithCount()
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(), emptyList())
 }
