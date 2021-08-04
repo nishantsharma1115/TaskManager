@@ -42,4 +42,7 @@ constructor(
 
     val categoryListWithCount = dataRepository.getAllCategoriesWithCount()
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(), emptyList())
+
+    val todayNotes = dataRepository.getTodayTasks()
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(), emptyList())
 }

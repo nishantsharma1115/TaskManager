@@ -36,7 +36,6 @@ class CategoryWithCountAdapter :
 
     override fun onBindViewHolder(holder: SingleCategory, position: Int) {
         val current = currentList[position]
-
         holder.bind(current)
     }
 }

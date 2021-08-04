@@ -8,8 +8,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.nishant.mytasks.adapters.CategoryWithCountAdapter
+import com.nishant.mytasks.adapters.EqualItemSpacingDecoration
+import com.nishant.mytasks.adapters.TodayTaskAdapter
 import com.nishant.mytasks.databinding.ActivityMainBinding
+import com.nishant.mytasks.room.CacheMapper
 import com.nishant.mytasks.ui.AddTaskActivity
 import com.nishant.mytasks.ui.DataViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -61,6 +65,26 @@ class MainActivity : AppCompatActivity() {
                     binding.homePage.rvCategories.visibility = View.VISIBLE
                     binding.homePage.noTaskTextForCategory.visibility = View.GONE
                     adapter.submitList(it)
+                }
+            }
+        }
+
+        val todayTaskAdapter = TodayTaskAdapter()
+        binding.homePage.rvTodaysTask.adapter = todayTaskAdapter
+        val layoutManager = StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
+        binding.homePage.rvTodaysTask.addItemDecoration(EqualItemSpacingDecoration(15))
+        binding.homePage.rvTodaysTask.layoutManager = layoutManager
+        binding.homePage.rvTodaysTask.setHasFixedSize(true)
+
+        lifecycleScope.launchWhenStarted {
+            dataViewModel.todayNotes.collect { list ->
+                if (list.isEmpty()) {
+                    binding.homePage.rvTodaysTask.visibility = View.GONE
+                    binding.homePage.noTaskTextForTodayTask.visibility = View.VISIBLE
+                } else {
+                    todayTaskAdapter.submitList(CacheMapper().mapFromEntityList(list))
+                    binding.homePage.rvTodaysTask.visibility = View.VISIBLE
+                    binding.homePage.noTaskTextForTodayTask.visibility = View.GONE
                 }
             }
         }

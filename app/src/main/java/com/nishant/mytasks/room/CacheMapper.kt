@@ -14,6 +14,7 @@ constructor() : EntityMapper<TaskCacheEntity, Task> {
             category = entity.category,
             title = entity.title,
             task = entity.task,
+            taskStatus = entity.taskStatus,
             isArchived = entity.isArchived,
             isPinned = entity.isPinned,
             time = entity.time
@@ -26,6 +27,7 @@ constructor() : EntityMapper<TaskCacheEntity, Task> {
             day = domainModel.day,
             category = domainModel.category,
             title = domainModel.title,
+            taskStatus = domainModel.taskStatus,
             task = domainModel.task,
             isArchived = domainModel.isArchived,
             isPinned = domainModel.isPinned,

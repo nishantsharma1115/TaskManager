@@ -108,6 +108,7 @@ class AddTaskActivity : AppCompatActivity() {
             binding.edtCategory.text.toString(),
             binding.edtTitle.text.toString(),
             binding.edtTask.text.toString(),
+            "Not Done",
             isArchived,
             isPinned,
             time
