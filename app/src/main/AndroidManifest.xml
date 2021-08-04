@@ -10,6 +10,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyTasks">
+        <activity android:name=".ui.ArchieveTasksActivity"></activity>
         <activity
             android:name=".ui.AddTaskActivity"
             android:theme="@style/lightStatusBar" />

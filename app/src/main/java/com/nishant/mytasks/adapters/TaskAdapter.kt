@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.nishant.mytasks.databinding.SingleTaskLayoutBinding
 import com.nishant.mytasks.model.Task
 
-class TodayTaskAdapter : ListAdapter<Task, TodayTaskAdapter.SingleTask>(DiffCall()) {
+class TaskAdapter : ListAdapter<Task, TaskAdapter.SingleTask>(DiffCall()) {
 
     class DiffCall : DiffUtil.ItemCallback<Task>() {
         override fun areItemsTheSame(oldItem: Task, newItem: Task): Boolean {

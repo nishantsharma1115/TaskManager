@@ -11,11 +11,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.nishant.mytasks.adapters.CategoryWithCountAdapter
 import com.nishant.mytasks.adapters.EqualItemSpacingDecoration
-import com.nishant.mytasks.adapters.TodayTaskAdapter
+import com.nishant.mytasks.adapters.TaskAdapter
 import com.nishant.mytasks.databinding.ActivityMainBinding
 import com.nishant.mytasks.room.CacheMapper
 import com.nishant.mytasks.ui.AddTaskActivity
-import com.nishant.mytasks.ui.DataViewModel
+import com.nishant.mytasks.ui.ArchieveTasksActivity
+import com.nishant.mytasks.viewmodels.DataViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import nl.psdcompany.duonavigationdrawer.widgets.DuoDrawerToggle
@@ -69,7 +70,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        val todayTaskAdapter = TodayTaskAdapter()
+        val todayTaskAdapter = TaskAdapter()
         binding.homePage.rvTodaysTask.adapter = todayTaskAdapter
         val layoutManager = StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
         binding.homePage.rvTodaysTask.addItemDecoration(EqualItemSpacingDecoration(15))
@@ -89,34 +90,8 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-//        dataViewModel.getAllCategoriesWithCount()
-//        dataViewModel.getAllCategoriesStatus.observe(this, { response ->
-//            when (response) {
-//                is Resource.Loading -> {
-//                    Log.d("List result", "Loading")
-//                }
-//                is Resource.Success -> {
-//                    binding.homePage.rvCategories.visibility = View.VISIBLE
-//                    binding.homePage.noTaskTextForCategory.visibility = View.GONE
-//                    Log.d("List result", response.data.toString())
-//                    if (response.data != null) {
-//                        val list = response.data
-//                        val adapter = CategoryWithCountAdapter()
-//                        binding.homePage.rvCategories.adapter = adapter
-//                        binding.homePage.rvCategories.layoutManager = LinearLayoutManager(
-//                            applicationContext,
-//                            LinearLayoutManager.HORIZONTAL,
-//                            false
-//                        )
-//                        binding.homePage.rvCategories.setHasFixedSize(true)
-//                        adapter.submitList(list)
-//                    }
-//                }
-//                is Resource.Error -> {
-//                    binding.homePage.rvCategories.visibility = View.GONE
-//                    binding.homePage.noTaskTextForCategory.visibility = View.VISIBLE
-//                }
-//            }
-//        })
+        binding.menuPage.archieve.setOnClickListener {
+            startActivity(Intent(this, ArchieveTasksActivity::class.java))
+        }
     }
 }

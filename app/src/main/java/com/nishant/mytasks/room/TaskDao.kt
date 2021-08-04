@@ -16,6 +16,9 @@ interface TaskDao {
     @Query("select COUNT(category) AS count, category from TaskTable group by category")
     fun getAllCategoriesWithCount(): Flow<List<TaskCount>>
 
-    @Query("select * from TaskTable where day='Today'")
+    @Query("select * from TaskTable where day='Today' and isArchived=0")
     fun getAllTodayTask(): Flow<List<TaskCacheEntity>>
+
+    @Query("select * from TaskTable where isArchived=1")
+    fun getAllArchieveTasks(): Flow<List<TaskCacheEntity>>
 }

@@ -1,4 +1,4 @@
-package com.nishant.mytasks.ui
+package com.nishant.mytasks.viewmodels
 
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
@@ -29,20 +29,12 @@ constructor(
         })
     }
 
-//    private val _getAllCategoriesStatus = MutableLiveData<Resource<List<TaskCount>>>()
-//    val getAllCategoriesStatus: LiveData<Resource<List<TaskCount>>> = _getAllCategoriesStatus
-//    fun getAllCategoriesWithCount() = viewModelScope.launch {
-//        _getAllCategoriesStatus.postValue(Resource.Loading())
-//        dataRepository.getAllCategoriesWithCount({ categoryList ->
-//            _getAllCategoriesStatus.postValue(Resource.Success(categoryList))
-//        }, { error ->
-//            _getAllCategoriesStatus.postValue(Resource.Error(error))
-//        })
-//    }
-
     val categoryListWithCount = dataRepository.getAllCategoriesWithCount()
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(), emptyList())
 
     val todayNotes = dataRepository.getTodayTasks()
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(), emptyList())
+
+    val archieveTasks = dataRepository.getArchieveTasks()
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(), emptyList())
 }

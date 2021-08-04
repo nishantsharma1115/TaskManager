@@ -30,4 +30,6 @@ class DataRepository
     fun getAllCategoriesWithCount() = taskDao.getAllCategoriesWithCount()
 
     fun getTodayTasks() = taskDao.getAllTodayTask()
+
+    fun getArchieveTasks() = taskDao.getAllArchieveTasks()
 }
