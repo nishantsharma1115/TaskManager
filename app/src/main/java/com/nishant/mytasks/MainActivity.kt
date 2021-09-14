@@ -70,7 +70,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        val todayTaskAdapter = TaskAdapter()
+        val todayTaskAdapter = TaskAdapter(this)
         binding.homePage.rvTodaysTask.adapter = todayTaskAdapter
         val layoutManager = StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
         binding.homePage.rvTodaysTask.addItemDecoration(EqualItemSpacingDecoration(15))

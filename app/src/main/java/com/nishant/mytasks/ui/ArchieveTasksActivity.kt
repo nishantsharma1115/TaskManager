@@ -27,7 +27,7 @@ class ArchieveTasksActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_archieve_tasks)
 
-        val archieveTaskAdapter = TaskAdapter()
+        val archieveTaskAdapter = TaskAdapter(this)
         binding.rvArchieveTask.adapter = archieveTaskAdapter
         val layoutManager = StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
         binding.rvArchieveTask.addItemDecoration(EqualItemSpacingDecoration(15))
