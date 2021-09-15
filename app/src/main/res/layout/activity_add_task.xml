@@ -137,9 +137,10 @@
     <EditText
         android:id="@+id/edtTask"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="20dp"
+        android:layout_marginBottom="10dp"
         android:background="@color/light_blue"
         android:gravity="top|start"
         android:hint="Task"
@@ -148,6 +149,7 @@
         android:scrollbars="vertical"
         android:textColor="@color/white"
         android:textColorHint="@color/light_text"
+        app:layout_constraintBottom_toTopOf="@id/edited"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/taskDayLayout"
         app:layout_constraintTop_toBottomOf="@id/edtTitle" />

@@ -4,7 +4,7 @@ import android.graphics.Rect
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 
-class EqualItemSpacingDecoration(val space: Int) : RecyclerView.ItemDecoration() {
+class EqualItemSpacingDecoration(private val spacing: Int) : RecyclerView.ItemDecoration() {
     override fun getItemOffsets(
         outRect: Rect,
         view: View,
@@ -12,7 +12,12 @@ class EqualItemSpacingDecoration(val space: Int) : RecyclerView.ItemDecoration()
         state: RecyclerView.State
     ) {
         super.getItemOffsets(outRect, view, parent, state)
-        outRect.bottom = space
-        outRect.right = space
+        val position = parent.getChildAdapterPosition(view)
+        val column = position % 2
+        outRect.left = column * spacing / 2
+        outRect.right = spacing - (column + 1) * spacing / 2
+        if (position >= 2) {
+            outRect.top = spacing
+        }
     }
 }

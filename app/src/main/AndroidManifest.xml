@@ -10,10 +10,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyTasks">
-        <activity android:name=".ui.ArchieveTasksActivity"/>
+        <activity android:name=".ui.ArchieveTasksActivity" />
         <activity
             android:name=".ui.AddTaskActivity"
-            android:theme="@style/lightStatusBar" />
+            android:theme="@style/lightStatusBar"
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".LoginActivity"
             android:windowSoftInputMode="stateVisible|adjustResize">
