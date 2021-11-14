@@ -7,6 +7,7 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "TaskTable")
 data class TaskCacheEntity(
 
+    @PrimaryKey(autoGenerate = false)
     @ColumnInfo(name = "userId")
     var userId: String,
 
@@ -31,7 +32,6 @@ data class TaskCacheEntity(
     @ColumnInfo(name = "isCompleted")
     var isCompleted: Int,
 
-    @PrimaryKey(autoGenerate = false)
     @ColumnInfo(name = "time")
     var time: String
 )

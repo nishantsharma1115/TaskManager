@@ -45,7 +45,9 @@ class MainActivity : AppCompatActivity() {
         binding.homePage.toolbar.setNavigationIcon(R.drawable.drawer_icon)
 
         binding.homePage.btnAddTask.setOnClickListener {
-            startActivity(Intent(this, AddTaskActivity::class.java))
+            val intent = Intent(this, AddTaskActivity::class.java)
+            intent.putExtra("from", "add")
+            startActivity(intent)
         }
 
         val adapter = CategoryWithCountAdapter()

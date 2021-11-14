@@ -1,191 +1,215 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/light_blue"
-    tools:context=".ui.AddTaskActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <ImageView
-        android:id="@+id/backButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="30dp"
-        android:clickable="true"
-        android:contentDescription="@string/image"
-        android:focusable="true"
-        android:src="@drawable/back"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <data>
 
-    <TextView
-        android:id="@+id/activityTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:text="Add Task"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <variable
+            name="task"
+            type="com.nishant.mytasks.model.Task" />
+    </data>
 
-    <ImageView
-        android:id="@+id/saveTask"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="30dp"
-        android:clickable="true"
-        android:contentDescription="@string/image"
-        android:focusable="true"
-        android:src="@drawable/save_icon"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:tint="@color/button" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/light_blue"
+        tools:context=".ui.AddTaskActivity">
 
-    <ProgressBar
-        android:id="@+id/progressBar"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="30dp"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/txtTaskDay"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="30dp"
-        android:text="Day of the Task"
-        android:textColor="@color/textColor"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/backButton" />
-
-    <RadioGroup
-        android:id="@+id/taskDayLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:checkedButton="@id/todayTaskButton"
-        android:orientation="horizontal"
-        app:layout_constraintStart_toStartOf="@id/txtTaskDay"
-        app:layout_constraintTop_toBottomOf="@id/txtTaskDay">
-
-        <RadioButton
-            android:id="@+id/todayTaskButton"
+        <ImageView
+            android:id="@+id/backButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:buttonTint="@color/textColor"
-            android:paddingStart="10dp"
-            android:text="Today"
-            android:textColor="@color/textColor"
-            android:textSize="20sp" />
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="30dp"
+            android:clickable="true"
+            android:contentDescription="@string/image"
+            android:focusable="true"
+            android:src="@drawable/back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <RadioButton
-            android:id="@+id/tomorrowTaskButton"
+        <TextView
+            android:id="@+id/activityTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="Add Task"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/saveTask"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="30dp"
+            android:clickable="true"
+            android:contentDescription="@string/image"
+            android:focusable="true"
+            android:src="@drawable/save_icon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/button" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="30dp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btnMarkAsComplete"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:background="@color/button"
+            android:text="Mark as Complete"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/backButton" />
+
+        <TextView
+            android:id="@+id/txtTaskDay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="12dp"
+            android:text="Day of the Task"
+            android:textColor="@color/textColor"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnMarkAsComplete" />
+
+        <RadioGroup
+            android:id="@+id/taskDayLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:checkedButton="@id/todayTaskButton"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="@id/txtTaskDay"
+            app:layout_constraintTop_toBottomOf="@id/txtTaskDay">
+
+            <RadioButton
+                android:id="@+id/todayTaskButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/textColor"
+                android:paddingStart="10dp"
+                android:text="Today"
+                android:textColor="@color/textColor"
+                android:textSize="20sp" />
+
+            <RadioButton
+                android:id="@+id/tomorrowTaskButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:buttonTint="@color/textColor"
+                android:paddingStart="10dp"
+                android:text="Tomorrow"
+                android:textColor="@color/textColor"
+                android:textSize="20sp" />
+
+        </RadioGroup>
+
+        <EditText
+            android:id="@+id/edtCategory"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:background="@color/light_blue"
+            android:hint="Category"
+            android:importantForAutofill="no"
+            android:inputType="textCapWords"
+            android:text="@{task.category}"
+            android:textColor="@color/textColor"
+            android:textColorHint="@color/light_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/taskDayLayout"
+            app:layout_constraintTop_toBottomOf="@id/taskDayLayout" />
+
+        <EditText
+            android:id="@+id/edtTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:background="@color/light_blue"
+            android:hint="Title"
+            android:importantForAutofill="no"
+            android:inputType="textCapWords"
+            android:text="@{task.title}"
+            android:textColor="@color/white"
+            android:textColorHint="@color/light_text"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/taskDayLayout"
+            app:layout_constraintTop_toBottomOf="@id/edtCategory" />
+
+        <EditText
+            android:id="@+id/edtTask"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/light_blue"
+            android:gravity="top|start"
+            android:hint="Task"
+            android:importantForAutofill="no"
+            android:inputType="textMultiLine|textCapWords"
+            android:scrollbars="vertical"
+            android:text="@{task.task}"
+            android:textColor="@color/white"
+            android:textColorHint="@color/light_text"
+            app:layout_constraintBottom_toTopOf="@id/edited"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/taskDayLayout"
+            app:layout_constraintTop_toBottomOf="@id/edtTitle" />
+
+        <ImageView
+            android:id="@+id/addTaskToArchieve"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="40dp"
-            android:buttonTint="@color/textColor"
-            android:paddingStart="10dp"
-            android:text="Tomorrow"
+            android:layout_marginBottom="30dp"
+            android:contentDescription="@string/image"
+            android:src="@drawable/not_archieve"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/edited"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
+            android:text="Edited 11:45 PM"
             android:textColor="@color/textColor"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
-    </RadioGroup>
-
-    <EditText
-        android:id="@+id/edtCategory"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
-        android:background="@color/light_blue"
-        android:hint="Category"
-        android:importantForAutofill="no"
-        android:inputType="textCapWords"
-        android:textColor="@color/textColor"
-        android:textColorHint="@color/light_text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/taskDayLayout"
-        app:layout_constraintTop_toBottomOf="@id/taskDayLayout" />
-
-    <EditText
-        android:id="@+id/edtTitle"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="20dp"
-        android:background="@color/light_blue"
-        android:hint="Title"
-        android:importantForAutofill="no"
-        android:inputType="textCapWords"
-        android:textColor="@color/white"
-        android:textColorHint="@color/light_text"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/taskDayLayout"
-        app:layout_constraintTop_toBottomOf="@id/edtCategory" />
-
-    <EditText
-        android:id="@+id/edtTask"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="10dp"
-        android:background="@color/light_blue"
-        android:gravity="top|start"
-        android:hint="Task"
-        android:importantForAutofill="no"
-        android:inputType="textMultiLine"
-        android:scrollbars="vertical"
-        android:textColor="@color/white"
-        android:textColorHint="@color/light_text"
-        app:layout_constraintBottom_toTopOf="@id/edited"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/taskDayLayout"
-        app:layout_constraintTop_toBottomOf="@id/edtTitle" />
-
-    <ImageView
-        android:id="@+id/addTaskToArchieve"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginBottom="30dp"
-        android:contentDescription="@string/image"
-        android:src="@drawable/not_archieve"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/edited"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="30dp"
-        android:text="Edited 11:45 PM"
-        android:textColor="@color/textColor"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <ImageView
-        android:id="@+id/addTaskToPinned"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="40dp"
-        android:layout_marginBottom="30dp"
-        android:contentDescription="@string/image"
-        android:src="@drawable/pin_icon"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:tint="@color/textColor" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <ImageView
+            android:id="@+id/addTaskToPinned"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="40dp"
+            android:layout_marginBottom="30dp"
+            android:contentDescription="@string/image"
+            android:src="@drawable/pin_icon"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:tint="@color/textColor" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

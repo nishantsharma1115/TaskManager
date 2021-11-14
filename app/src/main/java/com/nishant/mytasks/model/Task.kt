@@ -1,5 +1,7 @@
 package com.nishant.mytasks.model
 
+import java.io.Serializable
+
 data class Task(
     var userId: String,
     var day: String,
@@ -10,4 +12,4 @@ data class Task(
     var isArchived: Boolean,
     var isPinned: Boolean,
     var time: String
-)
+) : Serializable

@@ -28,6 +28,7 @@ class AddTaskActivity : AppCompatActivity() {
     private var isArchived: Boolean = false
     private var isPinned: Boolean = false
     private lateinit var time: String
+    private lateinit var editableTask: Task
     private val dataViewModel: DataViewModel by viewModels()
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -36,6 +37,15 @@ class AddTaskActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityAddTaskBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        val from = intent.getStringExtra("from")
+
+        if (from == "edit") {
+            editableTask = intent.getSerializableExtra("task") as Task
+            setTaskData(editableTask)
+        } else {
+            setNewTaskLayout()
+        }
 
         binding.saveTask.setOnClickListener {
             val imm = this.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
@@ -89,6 +99,40 @@ class AddTaskActivity : AppCompatActivity() {
             } else {
                 Toast.makeText(this, "Remove from pinned", Toast.LENGTH_SHORT).show()
                 binding.addTaskToPinned.load(R.drawable.pin_icon)
+            }
+        }
+    }
+
+    private fun setNewTaskLayout() {
+        binding.activityTitle.text = "Add Task"
+        binding.btnMarkAsComplete.visibility = View.GONE
+    }
+
+    private fun setTaskData(editableTask: Task) {
+        binding.task = editableTask
+        if (editableTask.isCompleted == 1) {
+            binding.saveTask.visibility = View.GONE
+        } else {
+            binding.saveTask.visibility = View.VISIBLE
+        }
+        binding.activityTitle.text = "Edit Task"
+        binding.btnMarkAsComplete.visibility = View.VISIBLE
+//        if (editableTask.isArchived) {
+//            binding.addTaskToArchieve.load(R.drawable.archieve_icon_white)
+//        } else {
+//            binding.addTaskToArchieve.load(R.drawable.not_archieve)
+//        }
+//        if (editableTask.isPinned) {
+//            binding.addTaskToPinned.load(R.drawable.pinned_icon)
+//        } else {
+//            binding.addTaskToPinned.load(R.drawable.pin_icon)
+//        }
+        when (editableTask.day) {
+            "Today" -> {
+                binding.taskDayLayout.check(R.id.todayTaskButton)
+            }
+            "Tomorrow" -> {
+                binding.taskDayLayout.check(R.id.tomorrowTaskButton)
             }
         }
     }

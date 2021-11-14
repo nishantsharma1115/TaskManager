@@ -1,6 +1,7 @@
 package com.nishant.mytasks.adapters
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
@@ -10,6 +11,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.nishant.mytasks.R
 import com.nishant.mytasks.databinding.SingleTaskLayoutBinding
 import com.nishant.mytasks.model.Task
+import com.nishant.mytasks.ui.AddTaskActivity
+import java.io.Serializable
 
 class TaskAdapter(
     val context: Context
@@ -65,5 +68,11 @@ class TaskAdapter(
             }
         }
         holder.bind(current)
+        holder.binding.singleTaskLayout.setOnClickListener {
+            val intent = Intent(context, AddTaskActivity::class.java)
+            intent.putExtra("from", "edit")
+            intent.putExtra("task", current as Serializable)
+            context.startActivity(intent)
+        }
     }
 }
