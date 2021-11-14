@@ -31,5 +31,7 @@ class DataRepository
 
     fun getTodayTasks() = taskDao.getAllTodayTask()
 
+    fun getTomorrowTasks() = taskDao.getAllTomorrowTask()
+
     fun getArchieveTasks() = taskDao.getAllArchieveTasks()
 }

@@ -1,21 +1,21 @@
-package com.nishant.mytasks
+package com.nishant.mytasks.ui
 
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.view.ViewGroup
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.nishant.mytasks.R
 import com.nishant.mytasks.adapters.CategoryWithCountAdapter
 import com.nishant.mytasks.adapters.EqualItemSpacingDecoration
 import com.nishant.mytasks.adapters.TaskAdapter
 import com.nishant.mytasks.databinding.ActivityMainBinding
 import com.nishant.mytasks.room.CacheMapper
-import com.nishant.mytasks.ui.AddTaskActivity
-import com.nishant.mytasks.ui.ArchieveTasksActivity
 import com.nishant.mytasks.viewmodels.DataViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
@@ -71,11 +71,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         val todayTaskAdapter = TaskAdapter(this)
-        binding.homePage.rvTodaysTask.adapter = todayTaskAdapter
-        val layoutManager = StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
-        binding.homePage.rvTodaysTask.addItemDecoration(EqualItemSpacingDecoration(15))
-        binding.homePage.rvTodaysTask.layoutManager = layoutManager
-        binding.homePage.rvTodaysTask.setHasFixedSize(true)
+        val tomorrowTaskAdapter = TaskAdapter(this)
+        setUpRV(todayTaskAdapter, tomorrowTaskAdapter)
 
         lifecycleScope.launchWhenStarted {
             dataViewModel.todayNotes.collect { list ->
@@ -83,6 +80,7 @@ class MainActivity : AppCompatActivity() {
                     binding.homePage.rvTodaysTask.visibility = View.GONE
                     binding.homePage.noTaskTextForTodayTask.visibility = View.VISIBLE
                 } else {
+                    changeMarginTop(binding.homePage.txtTomorrowTask)
                     todayTaskAdapter.submitList(CacheMapper().mapFromEntityList(list))
                     binding.homePage.rvTodaysTask.visibility = View.VISIBLE
                     binding.homePage.noTaskTextForTodayTask.visibility = View.GONE
@@ -90,8 +88,40 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        lifecycleScope.launchWhenStarted {
+            dataViewModel.tomorrowNotes.collect { list ->
+                if (list.isEmpty()) {
+                    binding.homePage.rvTomorrowsTask.visibility = View.GONE
+                    binding.homePage.noTaskTextForTomorrowTask.visibility = View.VISIBLE
+                } else {
+                    tomorrowTaskAdapter.submitList(CacheMapper().mapFromEntityList(list))
+                    binding.homePage.rvTomorrowsTask.visibility = View.VISIBLE
+                    binding.homePage.noTaskTextForTomorrowTask.visibility = View.GONE
+                }
+            }
+        }
+
         binding.menuPage.archieve.setOnClickListener {
             startActivity(Intent(this, ArchieveTasksActivity::class.java))
         }
+    }
+
+    private fun setUpRV(todayTaskAdapter: TaskAdapter, tomorrowTaskAdapter: TaskAdapter) {
+        binding.homePage.rvTodaysTask.adapter = todayTaskAdapter
+        binding.homePage.rvTomorrowsTask.adapter = tomorrowTaskAdapter
+        val todayLayoutManager = StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
+        val tomorrowLayoutManager = StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
+        binding.homePage.rvTodaysTask.addItemDecoration(EqualItemSpacingDecoration(15))
+        binding.homePage.rvTomorrowsTask.addItemDecoration(EqualItemSpacingDecoration(15))
+        binding.homePage.rvTodaysTask.layoutManager = todayLayoutManager
+        binding.homePage.rvTomorrowsTask.layoutManager = tomorrowLayoutManager
+        binding.homePage.rvTodaysTask.setHasFixedSize(true)
+        binding.homePage.rvTomorrowsTask.setHasFixedSize(true)
+    }
+
+    private fun changeMarginTop(view: View) {
+        val param = view.layoutParams as ViewGroup.MarginLayoutParams
+        param.setMargins(0, 20, 0, 0)
+        view.layoutParams = param
     }
 }

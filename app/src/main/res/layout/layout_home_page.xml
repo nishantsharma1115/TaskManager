@@ -55,7 +55,7 @@
                             android:layout_width="30dp"
                             android:layout_height="30dp"
                             android:layout_marginEnd="15dp"
-                            android:src="@drawable/picture"
+                            android:src="@color/black"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
@@ -103,7 +103,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:text="Today's Task"
+                    android:text="Today Tasks"
                     android:textColor="@color/textColor"
                     android:textSize="20sp"
                     app:layout_constraintStart_toStartOf="@id/toolbar"
@@ -132,6 +132,41 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/txtTodayTask" />
+
+                <TextView
+                    android:id="@+id/txtTomorrowTask"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
+                    android:text="Tomorrow Tasks"
+                    android:textColor="@color/textColor"
+                    android:textSize="20sp"
+                    app:layout_constraintStart_toStartOf="@id/toolbar"
+                    app:layout_constraintTop_toBottomOf="@id/rvTodaysTask" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvTomorrowsTask"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/txtTomorrowTask" />
+
+                <TextView
+                    android:id="@+id/noTaskTextForTomorrowTask"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:text="Press + to add task"
+                    android:textColor="@color/white"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/txtTomorrowTask" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>

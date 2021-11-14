@@ -19,6 +19,9 @@ interface TaskDao {
     @Query("select * from TaskTable where day='Today' and isArchived=0")
     fun getAllTodayTask(): Flow<List<TaskCacheEntity>>
 
+    @Query("select * from TaskTable where day='Tomorrow' and isArchived=0")
+    fun getAllTomorrowTask(): Flow<List<TaskCacheEntity>>
+
     @Query("select * from TaskTable where isArchived=1")
     fun getAllArchieveTasks(): Flow<List<TaskCacheEntity>>
 }

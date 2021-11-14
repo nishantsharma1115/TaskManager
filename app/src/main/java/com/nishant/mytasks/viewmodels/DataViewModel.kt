@@ -35,6 +35,9 @@ constructor(
     val todayNotes = dataRepository.getTodayTasks()
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(), emptyList())
 
+    val tomorrowNotes = dataRepository.getTomorrowTasks()
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(), emptyList())
+
     val archieveTasks = dataRepository.getArchieveTasks()
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(), emptyList())
 }

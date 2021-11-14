@@ -1,15 +1,17 @@
 package com.nishant.mytasks.ui
 
+import android.content.Context
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.RadioButton
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import coil.load
+import com.google.android.material.snackbar.Snackbar
 import com.nishant.mytasks.R
 import com.nishant.mytasks.databinding.ActivityAddTaskBinding
 import com.nishant.mytasks.model.Task
@@ -36,18 +38,22 @@ class AddTaskActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.saveTask.setOnClickListener {
+            val imm = this.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(it.windowToken, 0)
 
             time = LocalTime.now().toString()
 
-            Log.d("Here time", time)
             val task = getTask()
             if (validateInput(task)) {
                 dataViewModel.insertIntoDb(task)
             }
         }
 
+        binding.backButton.setOnClickListener {
+            onBackPressed()
+        }
+
         dataViewModel.insertTaskStatus.observe(this, { response ->
-            Log.d("Task Data", response.toString())
             when (response) {
                 is Resource.Loading -> {
                     showProgressBar()
@@ -65,7 +71,6 @@ class AddTaskActivity : AppCompatActivity() {
 
         binding.addTaskToArchieve.setOnClickListener {
             isArchived = !isArchived
-            Log.d("Here Archive", isArchived.toString())
 
             if (isArchived) {
                 Toast.makeText(this, "Achieved", Toast.LENGTH_SHORT).show()
@@ -77,7 +82,6 @@ class AddTaskActivity : AppCompatActivity() {
         }
         binding.addTaskToPinned.setOnClickListener {
             isPinned = !isPinned
-            Log.d("Here Pinned", isPinned.toString())
 
             if (isPinned) {
                 Toast.makeText(this, "Pinned", Toast.LENGTH_SHORT).show()
@@ -102,7 +106,6 @@ class AddTaskActivity : AppCompatActivity() {
     private fun getTask(): Task {
         val button = findViewById<RadioButton>(binding.taskDayLayout.checkedRadioButtonId)
         val day = button.text.toString()
-        Log.d("Here day", day)
         return Task(
             "Yes",
             day,
@@ -117,6 +120,26 @@ class AddTaskActivity : AppCompatActivity() {
     }
 
     private fun validateInput(task: Task): Boolean {
+        if (task.category.isEmpty()) {
+            Snackbar.make(binding.edtCategory, "Please enter Category", Snackbar.LENGTH_SHORT)
+                .show()
+            return false
+        }
+        if (task.title.isEmpty()) {
+            Snackbar.make(binding.edtCategory, "Please enter title", Snackbar.LENGTH_SHORT)
+                .show()
+            return false
+        }
+        if (task.task.isEmpty()) {
+            Snackbar.make(binding.edtCategory, "Please enter task", Snackbar.LENGTH_SHORT)
+                .show()
+            return false
+        }
+        if (task.task.isEmpty() && task.title.isEmpty()) {
+            Snackbar.make(binding.edtCategory, "Please enter title or task", Snackbar.LENGTH_SHORT)
+                .show()
+            return false
+        }
         return true
     }
 }

@@ -1,9 +1,10 @@
-package com.nishant.mytasks
+package com.nishant.mytasks.ui
 
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
+import com.nishant.mytasks.R
 
 class LoginActivity : AppCompatActivity() {
 
