@@ -19,6 +19,7 @@ import com.nishant.mytasks.util.Resource
 import com.nishant.mytasks.viewmodels.DataViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import java.time.LocalTime
+import java.util.*
 import kotlin.time.ExperimentalTime
 
 @AndroidEntryPoint
@@ -29,6 +30,7 @@ class AddTaskActivity : AppCompatActivity() {
     private var isPinned: Boolean = false
     private lateinit var time: String
     private lateinit var editableTask: Task
+    private var from = ""
     private val dataViewModel: DataViewModel by viewModels()
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -38,7 +40,7 @@ class AddTaskActivity : AppCompatActivity() {
         binding = ActivityAddTaskBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val from = intent.getStringExtra("from")
+        from = intent.getStringExtra("from") as String
 
         if (from == "edit") {
             editableTask = intent.getSerializableExtra("task") as Task
@@ -62,6 +64,16 @@ class AddTaskActivity : AppCompatActivity() {
         binding.backButton.setOnClickListener {
             onBackPressed()
         }
+
+        binding.btnMarkAsComplete.setOnClickListener {
+            dataViewModel.setTaskAsComplete(editableTask.userId)
+        }
+
+        dataViewModel.setTaskAsCompleteStatus.observe(this, {
+            if (it.data != null && it.data) {
+                onBackPressed()
+            }
+        })
 
         dataViewModel.insertTaskStatus.observe(this, { response ->
             when (response) {
@@ -112,6 +124,7 @@ class AddTaskActivity : AppCompatActivity() {
         binding.task = editableTask
         if (editableTask.isCompleted == 1) {
             binding.saveTask.visibility = View.GONE
+            binding.btnMarkAsComplete.text = "Task Completed"
         } else {
             binding.saveTask.visibility = View.VISIBLE
         }
@@ -150,17 +163,30 @@ class AddTaskActivity : AppCompatActivity() {
     private fun getTask(): Task {
         val button = findViewById<RadioButton>(binding.taskDayLayout.checkedRadioButtonId)
         val day = button.text.toString()
-        return Task(
-            "Yes",
-            day,
-            binding.edtCategory.text.toString(),
-            binding.edtTitle.text.toString(),
-            binding.edtTask.text.toString(),
-            0,
-            isArchived,
-            isPinned,
-            time
-        )
+
+        if (from == "edit") {
+            editableTask.day = day
+            editableTask.category = binding.edtCategory.text.toString()
+            editableTask.title = binding.edtTitle.text.toString()
+            editableTask.task = binding.edtTask.text.toString()
+            editableTask.isArchived = isArchived
+            editableTask.isPinned = isPinned
+            editableTask.time = time
+
+            return editableTask
+        } else {
+            return Task(
+                UUID.randomUUID().toString(),
+                day,
+                binding.edtCategory.text.toString(),
+                binding.edtTitle.text.toString(),
+                binding.edtTask.text.toString(),
+                0,
+                isArchived,
+                isPinned,
+                time
+            )
+        }
     }
 
     private fun validateInput(task: Task): Boolean {

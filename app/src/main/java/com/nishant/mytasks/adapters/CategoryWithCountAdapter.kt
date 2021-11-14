@@ -26,8 +26,9 @@ class CategoryWithCountAdapter :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: TaskCount) {
             binding.taskCountData = item
-            val percentageComplete = (item.noOfTaskCompleted / item.count) * 100
-            binding.progressLine.progress = percentageComplete
+            Log.d("Item Percentage", item.toString())
+            val percentageComplete = (item.noOfTaskCompleted.toDouble() / item.count) * 100
+            binding.progressLine.progress = percentageComplete.toInt()
             Log.d("Percentage", percentageComplete.toString())
         }
     }

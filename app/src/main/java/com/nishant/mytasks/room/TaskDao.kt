@@ -24,4 +24,7 @@ interface TaskDao {
 
     @Query("select * from TaskTable where isArchived=1")
     fun getAllArchieveTasks(): Flow<List<TaskCacheEntity>>
+
+    @Query("UPDATE TaskTable set isCompleted = 1 where userId = :id")
+    fun setTaskAsCompleted(id: String)
 }

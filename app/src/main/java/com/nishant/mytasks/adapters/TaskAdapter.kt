@@ -2,6 +2,7 @@ package com.nishant.mytasks.adapters
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Paint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
@@ -37,6 +38,13 @@ class TaskAdapter(
                 binding.taskStatus.text = "NOT DONE"
             } else {
                 binding.taskStatus.text = "DONE"
+            }
+            if (task.isCompleted == 1) {
+                binding.txtTitle.paintFlags =
+                    binding.txtTitle.paintFlags and Paint.STRIKE_THRU_TEXT_FLAG.inv()
+                binding.note.paintFlags =
+                    binding.note.paintFlags and Paint.STRIKE_THRU_TEXT_FLAG.inv()
+
             }
         }
     }

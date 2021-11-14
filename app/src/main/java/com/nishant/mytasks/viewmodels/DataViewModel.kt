@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.nishant.mytasks.model.Task
 import com.nishant.mytasks.repositories.DataRepository
 import com.nishant.mytasks.util.Resource
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
@@ -40,4 +41,14 @@ constructor(
 
     val archieveTasks = dataRepository.getArchieveTasks()
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(), emptyList())
+
+    private var _setTaskAsCompleteStatus = MutableLiveData<Resource<Boolean>>()
+    val setTaskAsCompleteStatus: LiveData<Resource<Boolean>> = _setTaskAsCompleteStatus
+    fun setTaskAsComplete(id: String) {
+        _setTaskAsCompleteStatus.postValue(Resource.Loading())
+        viewModelScope.launch(Dispatchers.IO) {
+            dataRepository.setTaskAsComplete(id)
+            _setTaskAsCompleteStatus.postValue(Resource.Success(true))
+        }
+    }
 }

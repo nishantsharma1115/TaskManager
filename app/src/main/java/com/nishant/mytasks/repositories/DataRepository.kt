@@ -1,6 +1,5 @@
 package com.nishant.mytasks.repositories
 
-import android.util.Log
 import com.nishant.mytasks.model.Task
 import com.nishant.mytasks.room.CacheMapper
 import com.nishant.mytasks.room.TaskDao
@@ -33,4 +32,6 @@ class DataRepository
     fun getTomorrowTasks() = taskDao.getAllTomorrowTask()
 
     fun getArchieveTasks() = taskDao.getAllArchieveTasks()
+
+    fun setTaskAsComplete(id: String) = taskDao.setTaskAsCompleted(id)
 }
