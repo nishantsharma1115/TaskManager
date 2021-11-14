@@ -20,7 +20,6 @@
             android:layout_height="wrap_content"
             android:layout_margin="12dp"
             android:drawablePadding="5dp"
-            android:text="@{TodayTask.taskStatus}"
             android:textColor="@color/button"
             android:textSize="12sp"
             app:drawableStartCompat="@drawable/check_circle_icon"

@@ -13,7 +13,7 @@ interface TaskDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(taskEntity: TaskCacheEntity): Long
 
-    @Query("select COUNT(category) AS count, category from TaskTable group by category")
+    @Query("select COUNT(category) AS count, category, SUM(isCompleted) as noOfTaskCompleted from TaskTable group by category")
     fun getAllCategoriesWithCount(): Flow<List<TaskCount>>
 
     @Query("select * from TaskTable where day='Today' and isArchived=0")

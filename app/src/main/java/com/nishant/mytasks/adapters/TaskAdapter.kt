@@ -12,7 +12,7 @@ import com.nishant.mytasks.databinding.SingleTaskLayoutBinding
 import com.nishant.mytasks.model.Task
 
 class TaskAdapter(
-    public val context: Context
+    val context: Context
 ) : ListAdapter<Task, TaskAdapter.SingleTask>(DiffCall()) {
 
     class DiffCall : DiffUtil.ItemCallback<Task>() {
@@ -30,6 +30,11 @@ class TaskAdapter(
         RecyclerView.ViewHolder(binding.root) {
         fun bind(task: Task) {
             binding.todayTask = task
+            if (task.isCompleted == 0) {
+                binding.taskStatus.text = "NOT DONE"
+            } else {
+                binding.taskStatus.text = "DONE"
+            }
         }
     }
 
@@ -41,20 +46,23 @@ class TaskAdapter(
 
     override fun onBindViewHolder(holder: SingleTask, position: Int) {
         val current = currentList[position]
-        if (current.taskStatus == "Done") {
-            holder.binding.taskStatus.setCompoundDrawablesRelativeWithIntrinsicBounds(
-                ContextCompat.getDrawable(
-                    context,
-                    R.drawable.check_circle_icon
-                ), null, null, null
-            )
-        } else {
-            holder.binding.taskStatus.setCompoundDrawablesRelativeWithIntrinsicBounds(
-                ContextCompat.getDrawable(
-                    context,
-                    R.drawable.not_check_circle_icon
-                ), null, null, null
-            )
+        when (current.isCompleted) {
+            0 -> {
+                holder.binding.taskStatus.setCompoundDrawablesRelativeWithIntrinsicBounds(
+                    ContextCompat.getDrawable(
+                        context,
+                        R.drawable.not_check_circle_icon
+                    ), null, null, null
+                )
+            }
+            1 -> {
+                holder.binding.taskStatus.setCompoundDrawablesRelativeWithIntrinsicBounds(
+                    ContextCompat.getDrawable(
+                        context,
+                        R.drawable.check_circle_icon
+                    ), null, null, null
+                )
+            }
         }
         holder.bind(current)
     }

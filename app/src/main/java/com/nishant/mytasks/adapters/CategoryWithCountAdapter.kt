@@ -1,5 +1,6 @@
 package com.nishant.mytasks.adapters
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -25,6 +26,9 @@ class CategoryWithCountAdapter :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: TaskCount) {
             binding.taskCountData = item
+            val percentageComplete = (item.noOfTaskCompleted / item.count) * 100
+            binding.progressLine.progress = percentageComplete
+            Log.d("Percentage", percentageComplete.toString())
         }
     }
 

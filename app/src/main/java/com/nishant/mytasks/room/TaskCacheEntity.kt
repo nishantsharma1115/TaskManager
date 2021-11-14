@@ -28,8 +28,8 @@ data class TaskCacheEntity(
     @ColumnInfo(name = "inPinned")
     var isPinned: Boolean,
 
-    @ColumnInfo(name = "taskStatus")
-    var taskStatus: String,
+    @ColumnInfo(name = "isCompleted")
+    var isCompleted: Int,
 
     @PrimaryKey(autoGenerate = false)
     @ColumnInfo(name = "time")

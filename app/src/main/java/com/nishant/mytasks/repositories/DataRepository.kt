@@ -19,7 +19,6 @@ class DataRepository
         failure: (Long) -> Unit
     ) {
         val result: Long = taskDao.insert(cacheMapper.mapToEntity(task))
-        Log.d("Here row", result.toString())
         if (result >= 0) {
             success(result)
         } else {

@@ -4,5 +4,6 @@ import androidx.room.ColumnInfo
 
 data class TaskCount(
     val count: Int,
-    @ColumnInfo(name = "category") val category: String
+    @ColumnInfo(name = "category") val category: String,
+    val noOfTaskCompleted: Int
 )
